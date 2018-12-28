@@ -1,0 +1,51 @@
+CS456 Computer Networks Programming Assignment 3
+Shortest Path Routing Algorithm
+
+Project Description
+################################################
+The goal of this assignment is to implement the shortest path routing algorithm(OSPF), which could be used to emulate the routing functionality of a router in the network.
+The router first sends an INIT packet to the network(aka. network emulator NSE). 
+The NSE replies with the circuit database associated with that router, which contains the links that router are connected to as well as their cost.
+From the information in the circuit database, the router initializes its topology database, finds its neighbors and sends a hello packet to each of them.
+Upon receiving a hello message, a router replies with an LSPDU message, including all entries in its circuit database, which contains all the link it connects to and their cost.
+Upon receiving a LSPDU message, a router uses the message to update its topology database, uses the topology database to construct a RIB(routing information base) using the Dijkstra Algorithm, 
+and forwards the LSPDU to all neighbors except the original sender.
+################################################
+
+Executables and parameters
+################################################
+1. Files
+router.cpp: entry to the router program
+packets.cpp: definitions of packet structures, functions for sending and receiving packets, functions for constructing circuit_DB and topology_DB(using the received packets)
+packets.h: the associated header file
+utilities.cpp: functions for translating hostname to ip address and making udp socket
+utilities.h: the associated header file
+Emulator-linux386: the network emulator provided by the instructor
+Makefile: used to compile the program from source code
+ReadMe: this file
+
+2. To compile .cpp files
+type "make" in the project directory
+
+3. To run the program
+(On host1)To run the network emulator: nselinux386 <host2> <nse_port>
+(On host2)To run a router: router <router_id> <host1> <nse_port> <router_port>
+
+<host2>: router's network address
+<nse_port>: emulator's UDP port number
+<router_id>: an interger that represents the router id(unique for each router)
+<host1>: emulator's network address
+<router_port>: router's UDP port number
+################################################
+
+Undergrad Machine
+################################################
+built and tested on: linux.student.cs.uwaterloo.ca
+
+Test on 2 different machines
+emulator: ubuntu1604-002.student.cs.uwaterloo.ca
+routers: ubuntu1604-004.student.cs.uwaterloo.ca 
+
+Versions
+################################################
+GCC (Ubuntu 5.5.0-12ubuntu1~16.04) 5.5.0 20171010

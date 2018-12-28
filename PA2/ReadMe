@@ -1,0 +1,63 @@
+CS456 Computer Networks Programming Assignment 2
+Reliable Data Transfer: The Go-Back-N(GBN) Protocol
+
+Project Description
+################################################
+The goal of this assignment is to implement the Go-Back-N protocol, which could be used to transfer a
+text file from one host to another across an unreliable network. The protocol should be able to handle
+network errors, such as packet loss and duplicate packets. For simplicity, your protocol is unidirectional,
+i.e., data will flow in one direction (from the sender to the receiver) and the acknowledgements (ACKs)
+in the opposite direction. To implement this protocol, you will write two programs: a sender and a
+receiver, with the specifications given below.
+
+When the sender needs to send packets to the receiver, it sends them to the network emulator instead
+of sending them directly to the receiver. The network emulator then forwards the received packets to
+the receiver. However, it may randomly discard and/or delay received packets. The same scenario
+happens when the receiver sends ACKs to the sender.
+################################################
+
+Executables and parameters
+################################################
+1. Files
+Sender.java: source code of the Sender program
+Receiver.java: source code of the Receiver program
+packet.java: helper class providing the packet data structure and data conversion methods
+Emulator-linux386: the network link emulator provided by the instructor
+Makefile: used to compile the program from source code
+ReadMe: this file
+
+2. To compile .java files
+type "make" in the project directory
+
+3. To run the program
+(On host1)To run the network emulator: nEmulator <port1> <host2> <port4> <port3> <host3> <port2> <maxDelay> <prob> <verbose>
+(On host2)To run the receiver: java Receiver <host1> <port3> <port4> <output file>
+(On host3)To run the sender: java Sender <host1> <port1> <port2> <input file>
+
+<port1>: emulator's receiving UDP port number in the forward(sender) direction
+<port2>: sender's receiving UDP port number
+<port3>: emulator's receiving UDP port number in the backward(receiver) direction
+<port4>: receiver's receiving UDP port number
+<host1>: emulator's network address
+<host2>: receiver's network address
+<host3>: sender's network address
+<maxDelay>: maximum delay of the link in units of millisecond
+<prob>: packet discard probability
+<verbose>: set to 1 if want the network emulator to output its internal processing
+################################################
+
+Undergrad Machine
+################################################
+built and tested on: linux.student.cs.uwaterloo.ca
+
+Test on 3 different machines
+emulator: ubuntu1604-002.student.cs.uwaterloo.ca
+receiver: ubuntu1604-004.student.cs.uwaterloo.ca 
+sender: ubuntu1604-006.student.cs.uwaterloo.ca 
+
+Versions
+################################################
+GCC (Ubuntu 5.5.0-12ubuntu1~16.04) 5.5.0 20171010
+java version "10.2.2" 2018-07-17
+JAVA(TM) SE Runtime Environment 18.3 (build 10.0.2+13)
+Java HotSpot(TM) 64-Bit Server VM 8.3 (build 10.0.2+13, mixed mode)

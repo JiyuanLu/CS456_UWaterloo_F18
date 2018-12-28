@@ -1,0 +1,32 @@
+CS456 Computer Networks Programming Assignment 1
+Introductory Socket Programming
+
+Project Description
+################################################
+In this project, I implemented a client program and a server program with both UDP and TCP socket programming. The client sends requests to the server to reverse strings. The communication between client and server has 2 stages: First the client and the server negotiate through a random port <n_port> to determine another random port <r_port> for later use using UDP sockets. Then the client connects to the server through the selected <r_port> for actual data transfer using TCP sockets.
+################################################
+
+Executables and parameters
+################################################
+To run the server: ./server.sh <req_code>
+To run the client: ./client.sh <server address> <n_port> <req_code> <smsg>
+
+<server_address>: string, the IP address of the server
+<n_port>: int, the negotiation port number of the server
+<req_code>: int, user-specified.
+<msg>: string, a string that you want to reverse, should be contained in one quote '' or ""
+################################################
+
+Undergrad Machine
+################################################
+built and tested on: linux.student.cs.uwaterloo.ca
+1. Test on the same machine
+server & client: ubuntu1604-008.student.cs.uwaterloo.ca
+2. Test on different machines
+server: ubuntu1604-008.student.cs.uwaterloo.ca 
+client: ubuntu1604-006.student.cs.uwaterloo.ca 
+
+Versions
+################################################
+GCC (Ubuntu 5.5.0-12ubuntu1~16.04) 5.5.0 20171010
+Python 2.7.12
